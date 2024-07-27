@@ -333,9 +333,13 @@ def handleCells(cellList, actCellSheet, sList):
             cellType = getText(refType.childNodes)
         else:
             cellType = "n"  # FIXME: some cells don't have t and s attributes
-
+        
         # print("reference: ", ref, ' Cell type: ', cellType)
-
+        refType = cellAtts.getNamedItem("s")
+        if refType:
+            cellType = getText(refType.childNodes)
+        else:
+            cellType = None
         if cellType == "inlineStr":
             iStringList = cell.getElementsByTagName("is")
             # print('iString: ', iStringList)
